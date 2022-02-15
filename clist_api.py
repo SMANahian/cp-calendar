@@ -71,7 +71,6 @@ def load_contests(forced=False):
                 if ("abc" in contest['href'].lower()
                     or "arc" in contest['href'].lower()
                     or "agc" in contest['href'].lower()
-                    or "ahc" in contest['href'].lower()
                     ):
                     contests_I_need.append(contest)
             else:
