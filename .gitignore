@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+calendar.ics
+contests.json
+.replit
+poetry.lock
+pyproject.toml

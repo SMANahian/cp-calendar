@@ -10,9 +10,9 @@ def main():
     keep_bot_alive()
 
     while True:
-        sleep(120)
         load_contests()
         update_calendar()
+        sleep(1800)
 
 
 if __name__ == "__main__":

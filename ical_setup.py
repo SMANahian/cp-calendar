@@ -3,7 +3,7 @@ import icalendar
 from icalendar import Calendar, Event, vDatetime
 from datetime import datetime
 
-from const import *
+from const import CONTESTS_JSON_FILE_PATH, CALENDAR_ICS_FILE_PATH
 
 
 def update_calendar():

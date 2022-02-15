@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 
-from const import *
+from const import URL_BASE, CONTESTS_JSON_FILE_PATH, RESOURCES, CLIST_API_TIME_DIFFERENCE
 
 
 class ClistApiError(Exception):
