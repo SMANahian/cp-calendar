@@ -36,7 +36,9 @@ def update_calendar():
 
 
     with open(CALENDAR_ICS_FILE_PATH, 'w') as f:
-        f.write(str(cal.to_ical()).replace('\\r\\n', '\n').strip()[2:-1])
+        s = str(cal.to_ical()).replace('\\r\\n', '\n').replace('\\xef\\xbc\\x88', ' (').replace('\\xef\\xbc\\x89', ')')
+
+        f.write(s.strip()[2:-1])
 
 
 
