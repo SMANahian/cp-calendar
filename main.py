@@ -1,6 +1,5 @@
 from dotenv import load_dotenv
 from clist_api import load_contests
-from ical_setup import update_calendar
 from keep_alive import keep_bot_alive
 from time import sleep
 
@@ -11,7 +10,6 @@ def main():
 
     while True:
         load_contests()
-        update_calendar()
         sleep(1800)
 
 

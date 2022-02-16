@@ -133,3 +133,4 @@ contests.json
 .replit
 poetry.lock
 pyproject.toml
+test.*

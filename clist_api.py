@@ -57,26 +57,9 @@ def load_contests(forced=False):
     contests = _query_api()
     db = {}
     db['querytime'] = current_time_stamp
-    contests_I_need = []
 
-    for contest in contests:
-        if "registration" in contest['event'].lower():
-            continue
 
-        if contest['resource'] in RESOURCES:
-            if contest['resource'] == "topcoder.com":
-                if "srm" in contest['event'].lower():
-                    contests_I_need.append(contest)
-            elif contest['resource'] == "atcoder.jp":
-                if ("abc" in contest['href'].lower()
-                    or "arc" in contest['href'].lower()
-                    or "agc" in contest['href'].lower()
-                    or "ahc" in contest['href'].lower()
-                    ):
-                    contests_I_need.append(contest)
-            else:
-                contests_I_need.append(contest)
-  
-    db['objects'] = contests_I_need
+
+    db['objects'] = contests
     with open(db_file, 'w') as f:
         json.dump(db, f, indent=4)
