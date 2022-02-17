@@ -4,7 +4,7 @@ import icalendar
 from icalendar import Calendar, Event, vDatetime
 from datetime import datetime
 
-from const import CONTESTS_JSON_FILE_PATH, CALENDAR_ICS_FILE_PATH
+from const import CONTESTS_JSON_FILE_PATH
 
 
 def get_event(contest, current_time):
@@ -38,22 +38,23 @@ def load_contests_per_need(resources):
     for contest in data['objects']:
         if contest['resource_id'] in resources:
             done = False
-            for global_restricted_keyword in resources['global'][1]:
-                if (    global_restricted_keyword in contest['href'].lower()
-                    or global_restricted_keyword in contest['event'].lower()
-                ):
-                    done = True
-                    break
-            if not done:
-                for global_allowed_keyword in resources['global'][0]:
-                    if (    global_allowed_keyword in contest['href'].lower()
-                        or global_allowed_keyword in contest['event'].lower()
+            if resources['global'][1] != []:
+                for gl_r_keyword in resources['global'][1]:
+                    if (    gl_r_keyword in contest['href'].lower()
+                        or gl_r_keyword in contest['event'].lower()
+                    ):
+                        done = True
+                        break
+            if not done and resources['global'][0] != []:
+                for gl_a_keyword in resources['global'][0]:
+                    if (    gl_a_keyword in contest['href'].lower()
+                        or gl_a_keyword in contest['event'].lower()
                     ):
                         cal.add_component(get_event(contest, current_time))
                         done = True
                         break
             
-            if not done:
+            if not done and resources[contest['resource_id']][1] != []:
                 for restricted_keyword in resources[contest['resource_id']][1]:
                     if (    restricted_keyword in contest['href'].lower()
                         or restricted_keyword in contest['event'].lower()
@@ -62,9 +63,12 @@ def load_contests_per_need(resources):
                         break
 
             if not done:
+                if resources[contest['resource_id']][0] == []:
+                    cal.add_component(get_event(contest, current_time))
+                    done = True
+                    continue
                 for allowed_keyword in resources[contest['resource_id']][0]:
-                    if (    allowed_keyword == "all"
-                        or allowed_keyword in contest['href'].lower()
+                    if (    allowed_keyword in contest['href'].lower()
                         or allowed_keyword in contest['event'].lower()
                     ):
                         cal.add_component(get_event(contest, current_time))

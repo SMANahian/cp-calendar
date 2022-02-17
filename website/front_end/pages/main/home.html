@@ -1,0 +1,27 @@
+{% extends "main/layout.html" %}
+                {% block main %}
+                <section id="home">
+                    <h1>Select the contests* you need</h1> <br />
+                    <h4>Put more keywords by putting spaces between them. Put the allowed keyword field empty if you want all contests except with restricted keywords in your calendar.</h5>
+                    <h5>*The contest list is from <a href="https://clist.by">Clist API</a></h6>
+                    <br />
+                </section>
+                <section id="form">
+                    <form action="{{ url_for('calendar_routes.calendar') }}" method="get" id="calendar-form">
+                        <label for="keywords">Global Keywords (These will effect on every contest you select):</label>
+                        <div class="keywords">
+                            <input type="text" class="keyword" id="gl_a" name="gl_a" placeholder="Allowed global keywords" />
+                            <input type="text" class="keyword" id="gl_r" name="gl_r" placeholder="Restricted global keywords" /> <br />
+                        </div> <br />
+                        {% for resource in resources %}
+                        <input type="checkbox" class="resources-name" name="resource" value="{{ resource['id'] }}" /> {{ resource['name'] }} <br />
+                        <div class="keywords">
+                            <input type="text" class="keyword" id="{{ resource['id'] }}_a" name="{{ resource['id'] }}_a" placeholder="Allowed keywords from {{ resource['name'] }}" />
+                            <input type="text" class="keyword" id="{{ resource['id'] }}_r" name="{{ resource['id'] }}_r" placeholder="Restricted keywords from {{ resource['name'] }}" /> <br />
+                        </div> <br />
+                        {% endfor %}
+                    </form>
+                    <p>Subscribe to this url in your calendar:</p>
+                    <input type="text" id="submission-link" value="" readonly/>
+                </section>
+                {% endblock %}
