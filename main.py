@@ -5,10 +5,15 @@ from time import sleep
 from threading import Thread
 
 load_dotenv()
+app = create_app()
+
+
+def run():
+    app.run(host='0.0.0.0',port=8080)
+
 
 def main():
-    app = create_app()
-    server = Thread(target=app.run)
+    server = Thread(target=run)
     server.start()
 
     while True:
