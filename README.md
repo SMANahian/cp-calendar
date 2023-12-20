@@ -1,5 +1,5 @@
 # How to use
-Step 1: Go to <a href="https://cp-calendar.smanahian.repl.co/">This link</a> <br /><br />
+Step 1: Go to <a href="https://cpcalendar.pythonanywhere.com/">This link</a> <br /><br />
 Step 2: Select the contest websites you want in your calendar <br /><br />
 Step 3: Write the global restricted keywords space separated (Every event with these keywords in name or in contest link will be filtered out so keep it empty if there is no restriction) i.e., "registration youtube" <br /><br />
 Step 4: For each website, write the restricted keywords space separated (keep it empty if there is no restriction), i.e., "marathon" in topcoder.com <br /><br />
