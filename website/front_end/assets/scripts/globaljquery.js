@@ -46,7 +46,7 @@ function getSubmissionLink() {
     var formData = form.serialize();
     var formAction = form.attr("action");
 
-    $("#submission-link").attr("value", "https://cp-calendar.smanahian.repl.co" + formAction + "?" + formData);
+    $("#submission-link").attr("value", "https://cpcalendar.pythonanywhere.com" + formAction + "?" + formData);
 };
 
 $(document).ready(function () {
